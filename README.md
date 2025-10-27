@@ -24,6 +24,10 @@ copy paste link ini di browser (chrome direkomendasikan)
 http://localhost:8080
 ```
 
+## Host dan SNI 
+kalian bisa menggunakan domain atau wildcard orang lain yang aktif untuk SNI dan host, tapi jika ingin pointing domain sendiri bisa gunakan script ini
+
+
 ## custom ping route (opsional)
 jika kamu ingin melihat ping kecil bisa gunakan script di bawah,tidak pun tidak apa-apa karena sudah di sediakan rute ping bawaan, ini hanya opsional jika ingin ping terlihat bagus
 

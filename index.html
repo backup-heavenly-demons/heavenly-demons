@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heavenly Demons</title>
+    
+    <script>
+        // Suntik CSS dengan cache busting
+        const cssVersion = new Date().getTime();
+        document.write(`<link rel="stylesheet" href="style.css?v=${cssVersion}">`);
+    </script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="title-container">
+                <h1>Heavenly Demons</h1>
+                <a href="https://t.me/Heavenlydemonsimmortal" class="telegram-link" target="_blank" rel="noopener noreferrer">@Heavenlydemonsimmortal</a>
+            </div>
+        </header>
+
+        <main>
+            <div class="info-grid">
+                <!-- Baris 1: Kontrol Utama -->
+                <div class="info-card" id="provider-filter-container" style="grid-area: search;">
+                    <span class="icon">🛰️</span>
+                    <div class="custom-dropdown">
+                        <div class="dropdown-selected" tabindex="0">
+                            <span id="selected-provider">Pilih Server VPN</span>
+                        </div>
+                        <div class="dropdown-options" id="provider-options">
+                            <!-- Opsi diisi oleh script.js -->
+                        </div>
+                    </div>
+                </div>
+                <div class="info-card" id="country-filter-container" style="grid-area: country;">
+                    <span class="icon">🌍</span>
+                    <div class="custom-dropdown">
+                        <div class="dropdown-selected" tabindex="0">
+                            <span id="selected-country">Pilih Negara</span>
+                        </div>
+                        <div class="dropdown-options" id="country-options">
+                            <!-- Opsi diisi oleh script.js -->
+                        </div>
+                    </div>
+                </div>
+                <div class="info-card" id="settings-btn" style="grid-area: settings;">
+                    <span class="icon">⚙️</span>
+                    <div>
+                        <h4>Pengaturan</h4>
+                    </div>
+                </div>
+
+                <!-- Tombol Fitur Baru -->
+                <div class="info-card" id="custom-server-btn" style="grid-area: custom;">
+                    <span class="icon">🖥️</span>
+                    <div>
+                        <h4>Custom Server</h4>
+                    </div>
+                </div>
+
+                <div class="info-card" id="test-wildcard-btn" style="grid-area: wildcard;">
+                    <span class="icon">🔍</span>
+                    <div>
+                        <h4>Test Wildcard</h4>
+                    </div>
+                </div>
+
+                <!-- Baris 2: Info & URL Kustom -->
+                <div class="info-card" id="ping-settings-btn" style="grid-area: worker;">
+                    <span class="icon">📡</span>
+                    <div>
+                        <h4>Ping Server</h4>
+                        <p id="ping-mode-status">Mode: Browser</p>
+                    </div>
+                </div>
+                <div class="info-card" style="grid-area: provider;">
+
+                    <div>
+                        <p>Provider</p>
+                        <h4 id="isp-info">Mendeteksi...</h4>
+                    </div>
+                </div>
+                <div class="info-card" style="grid-area: location;">
+
+                    <div>
+                        <p>Lokasi</p>
+                        <h4 id="location-info">Mendeteksi...</h4>
+                    </div>
+                </div>
+            </div>
+
+            <div class="server-list-container" id="server-list">
+                <!-- Konten di sini akan diisi oleh script.js -->
+            </div>
+        </main>
+    </div>
+
+    <footer class="controls-footer">
+        <div class="control-buttons">
+            <button class="btn" id="selected-count-btn">0 proxies</button>
+            <button class="btn" id="reping-btn">Test Ping</button>
+            <button class="btn primary" id="export-btn">Export</button>
+        </div>
+    </footer>
+
+    <!-- ======================================================= -->
+    <!-- MODAL SETTINGS (ELEMEN BARU)                            -->
+    <!-- ======================================================= -->
+    <div class="modal-overlay" id="settings-modal-overlay">
+        <div class="modal-content">
+            <button class="close-btn" data-modal-id="settings-modal-overlay">&times;</button>
+            <h2>Settings</h2>
+            <p>Atur parameter untuk generate konfigurasi.</p>
+            
+            <div class="form-group">
+                <label for="bug-cdn-input">Bug CDN / Host</label>
+                <input type="text" id="bug-cdn-input" placeholder="contoh.bug.com">
+            </div>
+            <div class="form-group">
+                <label for="worker-host-input">Worker Host (SNI)</label>
+                <input type="text" id="worker-host-input" placeholder="worker.anda.workers.dev">
+            </div>
+
+            <button class="btn" id="save-settings-btn" style="margin-top: 10px;">Simpan Pengaturan</button>
+
+            <hr style="border-color: #333; margin: 20px 0;">
+
+            <h4>Pengaturan Tersimpan</h4>
+            <div id="saved-settings-list" class="saved-settings-container">
+                <!-- Daftar pengaturan akan ditampilkan di sini oleh script.js -->
+            </div>
+
+            <div class="form-group">
+                <label for="uuid-input">UUID</label>
+                <input type="text" id="uuid-input" placeholder="UUID VLESS Anda">
+            </div>
+            <div class="form-group">
+                <label for="protocol-select">Protocol</label>
+                <select id="protocol-select">
+                    <option value="vless">VLESS</option>
+                    <option value="trojan">Trojan</option>
+                    <!-- Opsi lain bisa ditambahkan nanti -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tls-select">TLS</label>
+                <select id="tls-select">
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                </select>
+            </div>
+
+            <button class="btn primary" id="settings-done-btn">Done</button>
+        </div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- MODAL EDIT CUSTOM SERVER (BARU)                         -->
+    <!-- ======================================================= -->
+    <div class="modal-overlay" id="edit-server-modal-overlay">
+        <div class="modal-content">
+            <button class="close-btn">&times;</button>
+            <h2>Edit Custom Server</h2>
+            <p>Perbarui detail server kustom Anda.</p>
+            <input type="hidden" id="edit-server-id-input">
+            <div class="form-group">
+                <label for="edit-server-name-input">Nama Server</label>
+                <input type="text" id="edit-server-name-input" placeholder="misal: Server SG">
+            </div>
+            <div class="form-group">
+                <label for="edit-server-ip-input">IP Server</label>
+                <input type="text" id="edit-server-ip-input" placeholder="123.45.67.89">
+            </div>
+            <div class="form-group">
+                <label for="edit-server-port-input">Port</label>
+                <input type="text" id="edit-server-port-input" placeholder="80">
+            </div>
+            <button class="btn primary" id="save-server-changes-btn">Simpan Perubahan</button>
+        </div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- MODAL CUSTOM SERVER                                     -->
+    <!-- ======================================================= -->
+    <div class="modal-overlay" id="custom-server-modal-overlay">
+        <div class="modal-content">
+            <button class="close-btn" data-modal-id="custom-server-modal-overlay">&times;</button>
+            <h2>Custom Server</h2>
+            <p>Tambahkan server Anda sendiri.</p>
+            <div class="form-group">
+                <label for="server-name-input">Nama Server</label>
+                <input type="text" id="server-name-input" placeholder="misal: Server SG">
+            </div>
+            <div class="form-group">
+                <label for="server-ip-input">IP Server</label>
+                <input type="text" id="server-ip-input" placeholder="123.45.67.89">
+            </div>
+            <div class="form-group">
+                <label for="server-port-input">Port</label>
+                <input type="text" id="server-port-input" placeholder="80">
+            </div>
+            <button class="btn primary" id="add-server-btn">Tambahkan</button>
+        </div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- MODAL TEST WILDCARD                                     -->
+    <!-- ======================================================= -->
+    <div class="modal-overlay" id="test-wildcard-modal-overlay">
+        <div class="modal-content">
+            <button class="close-btn" data-modal-id="test-wildcard-modal-overlay">&times;</button>
+            <h2>Test Wildcard Domain</h2>
+            <p>Masukkan domain untuk menguji konektivitas.</p>
+            <div class="form-group">
+                <label for="wildcard-domain-input">Domain</label>
+                <input type="text" id="wildcard-domain-input" placeholder="contoh: ava.game.naver.com">
+            </div>
+            <button class="btn primary" id="run-wildcard-test-btn">Test</button>
+            <div id="wildcard-test-result" class="test-result">
+                <!-- Hasil tes akan muncul di sini -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ======================================================= -->
+    <!-- MODAL PING SETTINGS                                     -->
+    <!-- ======================================================= -->
+    <div class="modal-overlay" id="ping-settings-modal-overlay">
+        <div class="modal-content">
+            <button class="close-btn" data-modal-id="ping-settings-modal-overlay">&times;</button>
+            <h2>Pengaturan Ping Server</h2>
+            <p>Kosongkan input di bawah untuk menggunakan mode ping via Browser (default).</p>
+            <div class="form-group">
+                <label for="ping-worker-url-input">URL Ping Kustom</label>
+                <input type="text" id="ping-worker-url-input" placeholder="https://worker.anda.workers.dev">
+            </div>
+            <button class="btn primary" id="save-ping-settings-btn">Simpan</button>
+        </div>
+    </div>
+    
+    <script>
+        // Suntik JavaScript dengan cache busting
+        const jsVersion = new Date().getTime();
+        document.write(`<script src="script.js?v=${jsVersion}" defer><\/script>`);
+    </script>
+</body>
+</html>

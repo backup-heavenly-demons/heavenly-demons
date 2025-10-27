@@ -1,10 +1,10 @@
-# Heavenly Demons VLESS Configurator
+# Heavenly Demons V2RAY Configurator
 
-Ini adalah aplikasi web statis untuk menghasilkan konfigurasi VLESS berdasarkan daftar proxy yang disediakan.
+Ini adalah aplikasi web statis untuk menghasilkan konfigurasi V2RAY berdasarkan daftar proxy yang disediakan.
 
 ## Skrip Cloudflare Ping Worker
 
-Untuk fungsionalitas ping yang akurat, aplikasi ini mengandalkan Cloudflare Worker. Worker ini menerima permintaan dengan IP dan port, kemudian mengukur latensi koneksi HTTP ke target. Metode ini sangat kompatibel dan tidak memerlukan pengaturan khusus.
+Untuk fungsionalitas ping yang akurat, Kamu bisa menggunakan Cloudflare Worker. Worker ini menerima permintaan dengan IP dan port, kemudian mengukur latensi koneksi HTTP ke target. Metode ini sangat kompatibel dan tidak memerlukan pengaturan khusus.
 
 ### Cara Deploy
 
@@ -13,7 +13,7 @@ Untuk fungsionalitas ping yang akurat, aplikasi ini mengandalkan Cloudflare Work
 3.  Klik **Deploy**.
 4.  Salin URL Worker yang telah di-deploy dan tempelkan ke kolom "URL Ping Kustom" di aplikasi web.
 
-### Kode Worker (Sangat Kompatibel)
+### Kode Worker untuk ping
 
 ```javascript
 // Nama Worker: ping-tester-worker-http

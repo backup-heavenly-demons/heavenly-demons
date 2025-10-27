@@ -7,7 +7,7 @@ pkg update && pkg install git python -y
 ```
 2
 ```
-git clone https://github.com/backup-heavenly-demons/heavenly-demons.git
+git clone https://github.com/backup-heavenly-demons/heavenly-demons-v2ray
 ```
 3
 ```

@@ -1,4 +1,6 @@
+,,,
 pkg update && pkg install git python -y
+,,,
 git clone https://github.com/backup-heavenly-demons/heavenly-demons.git
 cd heavenly-demons
 python -m http.server 8080

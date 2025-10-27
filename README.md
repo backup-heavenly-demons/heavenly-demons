@@ -1,4 +1,4 @@
-## cara install menggunakan termux 
+# cara install menggunakan termux 
 copy paste semuanya di termux 
 
 1
@@ -18,7 +18,7 @@ cd heavenly-demons
 python -m http.server 8080
 ```
 
-# jalankan di browser 
+### jalankan di browser 
 copy paste link ini di browser (chrome direkomendasikan)
 ```
 http://localhost:8080

@@ -1,9 +1,19 @@
-,,,
+1
+```
 pkg update && pkg install git python -y
-,,,
+```
+2
+```
 git clone https://github.com/backup-heavenly-demons/heavenly-demons.git
+```
+3
+```
 cd heavenly-demons
+```
+4
+```
 python -m http.server 8080
+```
 
 
 

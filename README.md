@@ -14,11 +14,10 @@ cd heavenly-demons
 ```
 python -m http.server 8080
 ```
-
-
-
-
-
+copy paste link ini di browser (chrome direkomendasikan)
+```
+http://localhost:8080
+```
 # Heavenly Demons V2RAY Configurator
 
 Ini adalah aplikasi web statis untuk menghasilkan konfigurasi V2RAY berdasarkan daftar proxy yang disediakan.jika kamu ingin melihat ping kecil bisa gunakan script di bawah,tidak pun tidak apa-apa karena sudah di sediakan rute ping bawaan, ini hanya opsional jika ingin ping terlihat bagus
